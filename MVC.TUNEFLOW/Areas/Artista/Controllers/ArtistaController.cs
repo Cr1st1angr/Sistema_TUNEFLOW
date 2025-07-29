@@ -14,7 +14,7 @@ using System.Security.Claims;
 namespace MVC.TUNEFLOW.Areas.Artista.Controllers
 {
     [Area("Artista")]
-    [Authorize]
+    [Authorize(Roles = "artista")]
     public class ArtistaController : Controller
     {
         private readonly IDbConnection _db;

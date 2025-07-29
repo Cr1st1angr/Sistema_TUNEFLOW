@@ -6,7 +6,7 @@ namespace MVC.TUNEFLOW.Areas.Cliente.Controllers
 {
 
     [Area("Cliente")]
-    [Authorize]
+    [Authorize(Roles = "cliente")]
     public class PlaybackController : Controller
     {
         // GET: PlayBackController

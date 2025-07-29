@@ -12,7 +12,7 @@ using Modelos.Tuneflow.Models;
 namespace MVC.TUNEFLOW.Areas.Cliente.Controllers
 {
     [Area("Cliente")]
-    [Authorize]
+    [Authorize(Roles = "cliente")]
     public class DescubreController : Controller
     {
         private readonly HttpClient _httpClient;

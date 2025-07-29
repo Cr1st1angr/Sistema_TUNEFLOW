@@ -17,7 +17,7 @@ using Modelos.Tuneflow.Playlists;
 namespace MVC.TUNEFLOW.Areas.Artista.Controllers
 {
     [Area("Artista")]
-    [Authorize]
+    [Authorize(Roles = "artista")]
     public class CancionesController : Controller
     {
         string supabaseUrl = "https://kblhmjrklznspeijwzeg.supabase.co";

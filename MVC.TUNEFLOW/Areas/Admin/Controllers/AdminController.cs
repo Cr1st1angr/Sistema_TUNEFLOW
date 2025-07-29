@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace MVC.TUNEFLOW.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
+    [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         // GET: AdminController

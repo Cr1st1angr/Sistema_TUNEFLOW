@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authentication;
 namespace MVC.TUNEFLOW.Areas.Cliente.Controllers
 {
     [Area("Cliente")]
-    [Authorize]
+    [Authorize(Roles = "cliente")]
     public class ClienteController : Controller
     {
         // Mostrar detalles del cliente autenticado

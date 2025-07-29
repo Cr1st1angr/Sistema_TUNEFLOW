@@ -9,7 +9,7 @@ using System.Security.Claims;
 namespace MVC.TUNEFLOW.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
+    [Authorize(Roles = "admin")]
     public class CuentaController : Controller
     {
         public async Task<IActionResult> Details()

@@ -13,7 +13,7 @@ using MVC.TUNEFLOW.Services;
 namespace MVC.TUNEFLOW.Areas.Artista.Controllers
 {
     [Area("Artista")]
-    [Authorize]
+    
     public class PerfilController : Controller
     {
         private readonly SupabaseStorageService _supabaseService;
@@ -78,6 +78,7 @@ namespace MVC.TUNEFLOW.Areas.Artista.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "artista")]
         [Route("Artista/Perfil/ObtenerCancionesPorArtista")]
         public async Task<ActionResult> ObtenerCancionesPorArtista(int id)
         {
@@ -87,6 +88,7 @@ namespace MVC.TUNEFLOW.Areas.Artista.Controllers
         }
 
         // GET: PerfilController/Create
+        [Authorize(Roles = "artista")]
         public ActionResult Create()
         {
             return View();
@@ -94,6 +96,7 @@ namespace MVC.TUNEFLOW.Areas.Artista.Controllers
 
         // POST: PerfilController/Create
         [HttpPost]
+        [Authorize(Roles = "artista")]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
         {
@@ -116,6 +119,7 @@ namespace MVC.TUNEFLOW.Areas.Artista.Controllers
 
         // POST: PerfilController/Edit/5
         [HttpPost]
+        [Authorize(Roles = "artista")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(int id, IFormFile ImageFile, string Biography)
         {
@@ -145,6 +149,7 @@ namespace MVC.TUNEFLOW.Areas.Artista.Controllers
         }
 
         // GET: PerfilController/Delete/5
+        [Authorize(Roles = "artista")]
         public ActionResult Delete(int id)
         {
             return View();
@@ -152,6 +157,7 @@ namespace MVC.TUNEFLOW.Areas.Artista.Controllers
 
         // POST: PerfilController/Delete/5
         [HttpPost]
+        [Authorize(Roles = "artista")]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
@@ -167,6 +173,7 @@ namespace MVC.TUNEFLOW.Areas.Artista.Controllers
 
 
         [HttpPost]
+
         [Authorize(Roles = "artista")]
         public async Task<IActionResult> SolicitarVerificacion()
         {

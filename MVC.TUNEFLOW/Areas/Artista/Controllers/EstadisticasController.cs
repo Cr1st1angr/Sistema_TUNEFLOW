@@ -8,7 +8,7 @@ using System.Security.Claims;
 namespace MVC.TUNEFLOW.Areas.Artista.Controllers
 {
     [Area("Artista")]
-    [Authorize]
+    [Authorize(Roles = "artista")]
     public class EstadisticasController : Controller
     {
         // GET: EstadisticasController

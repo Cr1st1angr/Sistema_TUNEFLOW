@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace MVC.TUNEFLOW.Areas.Artista.Controllers
 {
     [Area("Artista")]
-    [Authorize]
+    [Authorize(Roles = "artista")]
     public class PanelController : Controller
     {
         // GET: PanelController

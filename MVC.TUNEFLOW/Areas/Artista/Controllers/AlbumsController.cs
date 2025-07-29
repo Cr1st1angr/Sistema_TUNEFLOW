@@ -20,7 +20,7 @@ using Npgsql;
 namespace MVC.TUNEFLOW.Areas.Artista.Controllers
 {
     [Area("Artista")]
-    [Authorize]
+    [Authorize(Roles = "artista")]
     public class AlbumsController : Controller
     {
         private readonly IConfiguration _configuration;

@@ -14,7 +14,7 @@ using System.Text.RegularExpressions;
 namespace MVC.TUNEFLOW.Areas.Client.Controllers
 {
     [Area("Cliente")]
-    [Authorize]
+    [Authorize(Roles = "cliente")]
     public class PerfilController : Controller
     {
         // GET: PerfilController

@@ -11,7 +11,7 @@ using Modelos.Tuneflow.User.Production;
 namespace MVC.TUNEFLOW.Areas.Cliente.Controllers
 {
     [Area("Cliente")]
-    [Authorize]
+    [Authorize(Roles = "cliente")]
     public class PanelController : Controller
     {
         public async Task<IActionResult> Panel()

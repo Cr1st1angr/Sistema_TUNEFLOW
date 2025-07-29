@@ -12,7 +12,7 @@ namespace MVC.TUNEFLOW.Areas.Cliente.Controllers
 {
 
     [Area("Cliente")]
-    [Authorize]
+    [Authorize(Roles = "cliente")]
     public class SeguimientoController : Controller
     {
         // GET: SeguimientoController

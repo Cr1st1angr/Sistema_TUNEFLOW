@@ -15,7 +15,7 @@ using Modelos.Tuneflow.Playlists;
 namespace MVC.TUNEFLOW.Areas.Cliente.Controllers
 {
     [Area("Cliente")]
-    [Authorize]
+    [Authorize(Roles = "cliente")]
     public class BuscarController : Controller
     {
         private readonly IConfiguration _config;
