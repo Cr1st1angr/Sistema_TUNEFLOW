@@ -67,7 +67,7 @@ namespace MVC.TUNEFLOW.Areas.Artista.Controllers
         public async Task<ActionResult> Details(int id)
         {
             var cancion = await Crud<Song>.GetByIdAsync(id);
-            if(cancion.Id != null)
+            if(cancion.AlbumId != null)
             {
                 int albumId = (int)cancion.AlbumId;
                 var album = await Crud<Album>.GetByIdAsync(albumId);

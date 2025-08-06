@@ -116,7 +116,6 @@ async function reproducirCancion(id, titulo, url, portada, idCliente, tipo, tiem
                 await actualizarBotonFavorito();
             } catch (err) {
                 console.error('Error al reproducir:', err);
-                mostrarNotificacion('Error al reproducir la canción', 'error');
             }
         }
     }
