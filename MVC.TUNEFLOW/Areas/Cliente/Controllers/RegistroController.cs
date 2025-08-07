@@ -1,4 +1,5 @@
 ﻿using API.Consumer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Modelos.Tuneflow.User.Production;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 namespace MVC.TUNEFLOW.Areas.Cliente.Controllers
 {
     [Area("Cliente")]
+    [Authorize(Roles = "cliente")]
     public class RegistroController : Controller
     {
         [AcceptVerbs("GET", "POST")]

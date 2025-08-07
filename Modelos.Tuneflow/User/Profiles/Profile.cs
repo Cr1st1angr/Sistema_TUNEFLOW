@@ -13,16 +13,16 @@ namespace Modelos.Tuneflow.User.Profiles
 {
     public class Profile
     {
-        [Key] public int Id { get; set; } // Identificador único del perfil
+        [Key] public int Id { get; set; } 
 
-        [ForeignKey(nameof(Client))] public int? ClientId { get; set; } // Identificador del cliente al que pertenece el perfil
+        [ForeignKey(nameof(Client))] public int? ClientId { get; set; } 
 
-        [ForeignKey(nameof(Artist))] public int? ArtistId { get; set; } // Identificador del artista al que pertenece el perfil
-        public Client? Client { get; set; } // Relación con el cliente (opcional)
-        public Artist? Artist { get; set; } // Relación con el artista (opcional)
-        public string ProfileImage { get; set; } // URL o ruta de la imagen del perfil
-        public string Biography { get; set; } // Breve biografía o descripción del perfil
-        public DateTime CreationDate { get; set; } // Fecha de creación del perfil
+        [ForeignKey(nameof(Artist))] public int? ArtistId { get; set; } 
+        public Client? Client { get; set; } 
+        public Artist? Artist { get; set; } 
+        public string ProfileImage { get; set; }
+        public string Biography { get; set; } 
+        public DateTime CreationDate { get; set; } 
     }
 
 }

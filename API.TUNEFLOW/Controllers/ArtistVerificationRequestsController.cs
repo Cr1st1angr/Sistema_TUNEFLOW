@@ -87,9 +87,5 @@ namespace API.TUNEFLOW.Controllers
             connection.Execute(@"DELETE FROM ""ArtistVerificationRequests"" WHERE ""Id"" = @Id", new { Id = id });
         }
 
-        /*private bool ArtistVerificationRequestExists(int id)
-        {
-            return _context.ArtistVerificationRequest.Any(e => e.Id == id);
-        }*/
     }
 }

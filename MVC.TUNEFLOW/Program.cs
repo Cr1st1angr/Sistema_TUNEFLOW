@@ -1,7 +1,8 @@
-using API.Consumer; // Para tu clase Crud que interact�a con la API
+
+using API.Consumer; // Para tu clase Crud que interact a con la API
 using API.TUNEFLOW.Controllers; // Posiblemente se refiere a controladores de tu API interna o compartida
-using Microsoft.AspNetCore.Identity; // Para la gesti�n de usuarios y autenticaci�n
-using Microsoft.EntityFrameworkCore; // Para interactuar con la base de datos a trav�s de Entity Framework Core
+using Microsoft.AspNetCore.Identity; // Para la gesti n de usuarios y autenticaci n
+using Microsoft.EntityFrameworkCore; // Para interactuar con la base de datos a trav s de Entity Framework Core
 using Modelos.Tuneflow.Media;
 using Modelos.Tuneflow.Models;
 using Modelos.Tuneflow.Payments;
@@ -13,7 +14,10 @@ using Modelos.Tuneflow.User.Production;
 using MVC.TUNEFLOW.Data; // Tu contexto de base de datos para el proyecto MVC
 using Npgsql;
 using System.Data;
-using System; // Agregado para usar TimeSpan
+using System;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using MVC.TUNEFLOW.Models;
+using MVC.TUNEFLOW.Services; // Agregado para usar TimeSpan
 
 namespace MVC.TUNEFLOW
 {
@@ -51,7 +55,7 @@ namespace MVC.TUNEFLOW
             var identityConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             if (string.IsNullOrEmpty(identityConnectionString))
             {
-                throw new InvalidOperationException("La cadena de conexi�n 'DefaultConnection' para Identity no se encontr�.");
+                throw new InvalidOperationException("La cadena de conexi n 'DefaultConnection' para Identity no se encontr .");
             }
 
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -66,10 +70,10 @@ namespace MVC.TUNEFLOW
                 });
             });
 
-            var tuneflowConnectionString = builder.Configuration.GetConnectionString("DefaultConnection"); 
+            var tuneflowConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             if (string.IsNullOrEmpty(tuneflowConnectionString))
             {
-                throw new InvalidOperationException("La cadena de conexi�n 'DefaultConnection' para TUNEFLOWContext no se encontr�.");
+                throw new InvalidOperationException("La cadena de conexi n 'DefaultConnection' para TUNEFLOWContext no se encontr .");
             }
 
             builder.Services.AddDbContext<TUNEFLOWContext>(options =>
@@ -85,12 +89,12 @@ namespace MVC.TUNEFLOW
             });
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddRoles<IdentityRole>() 
-                .AddEntityFrameworkStores<ApplicationDbContext>(); 
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
 
 
 
-
+            builder.Services.AddTransient<IEmailSender, EmailSender>();
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddRazorPages();

@@ -45,7 +45,7 @@ namespace MVC.TUNEFLOW.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
-            _supa = new SupabaseStorageService(supabaseUrl,supabaseAnonKey,bucket);
+            _supa = new SupabaseStorageService(supabaseUrl, supabaseAnonKey, bucket);
         }
 
         [BindProperty]
@@ -75,9 +75,7 @@ namespace MVC.TUNEFLOW.Areas.Identity.Pages.Account
             [DataType(DataType.Date), Display(Name = "Fecha de Nacimiento")]
             public DateTime BirthDate { get; set; }
 
-            [Required(ErrorMessage = "El nombre artístico es obligatorio.")]
-            [Remote(action: "VerificarStageName", controller: "Registro", areaName: "Cliente", ErrorMessage = "Ya en uso", AdditionalFields = "Input.StageName")]
-            [Display(Name = "Nombre Artístico")]
+            [Required, Display(Name = "Nombre Artístico")]
             public string StageName { get; set; }
 
             [Required, Display(Name = "Género Musical")]
@@ -134,7 +132,7 @@ namespace MVC.TUNEFLOW.Areas.Identity.Pages.Account
                         IsActive = true,
                         RegistrationDate = DateTime.UtcNow,
                         Verified = false, // por defecto
-                        Password = user.PasswordHash,
+                        Password = Input.Password,
                         UserId = user.Id // Asignar el ID del usuario recién creado
                     };
 
@@ -146,7 +144,7 @@ namespace MVC.TUNEFLOW.Areas.Identity.Pages.Account
                         ArtistId = newArtist.Id, // Asignar el ID del artista recién creado
                         ProfileImage = "https://kblhmjrklznspeijwzeg.supabase.co/storage/v1/object/public/imagenestuneflow/PerfilesDefecto/ImagenDefault.jpeg",
                         Biography = Input.Biography,
-                        CreationDate= DateTime.UtcNow,
+                        CreationDate = DateTime.UtcNow,
                     };
 
                     var newProfile = await Crud<Profile>.CreateAsync(profile);
@@ -159,7 +157,7 @@ namespace MVC.TUNEFLOW.Areas.Identity.Pages.Account
                         PublishedSongs = 0,
                         PublishedAlbums = 0
                     };
-                    
+
                     var newestadisticas = await Crud<ArtistStatistics>.CreateAsync(estadisticas);
 
                     await _userManager.AddToRoleAsync(user, "artista");
@@ -174,8 +172,30 @@ namespace MVC.TUNEFLOW.Areas.Identity.Pages.Account
                         new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                         Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirma tu cuenta",
-                        $"Confirma tu cuenta <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>haciendo clic aquí</a>.");
+                    var htmlMessage = $@"
+        <div style='font-family: Arial, sans-serif; background-color: #f2f6ff; padding: 30px; border-radius: 10px; color: #333;'>
+        <h2 style='color: #4a90e2;'>🎉 ¡Bienvenido a TuneFlow! 🎶</h2>
+        <p>Hola 👋,</p>
+
+        <p>Gracias por registrarte en <strong>TuneFlow</strong>, el lugar donde la música cobra vida.</p>
+
+         <p>Antes de empezar a disfrutar del ritmo, por favor confirma tu cuenta haciendo clic en el siguiente botón:</p>
+
+        <div style='text-align: center; margin: 30px 0;'>
+        <a href='{HtmlEncoder.Default.Encode(callbackUrl)}' style='background-color: #4a90e2; color: white; padding: 12px 25px; text-decoration: none; border-radius: 6px; font-weight: bold;'>
+            Confirmar mi cuenta
+        </a>
+        </div>
+
+        <p>Si tú no creaste esta cuenta, simplemente ignora este mensaje.</p>
+
+        <hr style='border: none; border-top: 1px solid #ddd; margin: 30px 0;'>
+        <p style='font-size: 12px; color: #999;'>
+        Este correo fue enviado automáticamente por TuneFlow. No respondas a este mensaje.
+        </p>
+        </div>";
+
+                    await _emailSender.SendEmailAsync(Input.Email, "Confirma tu cuenta", htmlMessage);
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                         return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl });

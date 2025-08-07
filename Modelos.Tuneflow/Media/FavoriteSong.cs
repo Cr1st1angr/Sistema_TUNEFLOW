@@ -13,10 +13,8 @@ namespace Modelos.Tuneflow.Media
     {
         [Key] public int Id { get; set; }
 
-        // Client who marked as favorite
         [ForeignKey(nameof(Client))] public int ClientId { get; set; }
 
-        // Marked song
         [ForeignKey(nameof(Song))] public int SongId { get; set; }
 
         public DateTime DateAdded { get; set; }

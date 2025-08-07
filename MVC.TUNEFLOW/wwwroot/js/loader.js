@@ -1,27 +1,22 @@
-﻿/*
---------------------------------------------
-LOADER
-ANIMATION ON PAGE LOAD (solo lo esencial del preloader)
---------------------------------------------
-*/
-
+﻿
 // LOADER - Configuración de Pace.js
 paceOptions = {
     ajax: true,      // Monitorea peticiones AJAX
     document: true,  // Monitorea la carga del DOM
-    eventLag: false  // Reduce el retardo de eventos (hace el preloader más reactivo)
+    eventLag: false  // Reduce el retardo de eventos
 };
 
 // Cuando Pace.js indica que la página ha terminado de cargar
 Pace.on('done', function () {
-    // Animación de los elementos internos del preloader (ej. texto y/o imagen)
+    // Animación 
     gsap.to('.p', 1, {
+        // Animación 
         opacity: 0,   // Desvanecer los elementos '.p'
         y: '-15%',    // Moverlos ligeramente hacia arriba
         stagger: -.1, // Pequeño retraso entre cada elemento '.p' para un efecto escalonado
     });
 
-    // Animación del contenedor principal del preloader (#preloader)
+    // Animación del contenedor principal
     gsap.to('#preloader', 1.5, {
         y: '-100%',             // Deslizar el preloader hacia arriba, fuera de la vista
         ease: 'Expo.easeInOut', // Tipo de animación para un movimiento suave
@@ -34,13 +29,7 @@ Pace.on('done', function () {
                 preloader.remove(); // Elimina el elemento #preloader del HTML
             }
 
-            // A PARTIR DE AQUÍ, IRÍAN LAS ANIMACIONES INICIALES DE CONTENIDO DE LA PÁGINA
-            // QUE SE DEBEN ACTIVAR UNA VEZ QUE EL PRELOADER HA DESAPARECIDO.
-            // He dejado solo las que mencionabas en tu código original que se activaban "después de la carga"
-            // y que no son de scroll.
-
             // Animaciones para elementos con clase 'text' y 'img'
-            // NOTA: Estas requieren jQuery y que 'reveal' sea una clase CSS que cambie la opacidad/transformación.
             $('.text').each(function () {
                 $(this).delay(1200).addClass('reveal');
             });

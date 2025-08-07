@@ -11,7 +11,7 @@ using Modelos.Tuneflow.User.Production;
 namespace MVC.TUNEFLOW.Areas.Cliente.Controllers
 {
     [Area("Cliente")]
-    [Authorize]
+    [Authorize(Roles = "cliente")]
     public class PanelController : Controller
     {
         public async Task<IActionResult> Panel()
@@ -42,7 +42,6 @@ namespace MVC.TUNEFLOW.Areas.Cliente.Controllers
 
             using var httpClient = new HttpClient();
 
-            // ✅ URL actualizada según tu mensaje
             var response = await httpClient.GetAsync($"https://localhost:7031/api/Countries/{paisId}/songs");
 
             if (!response.IsSuccessStatusCode)

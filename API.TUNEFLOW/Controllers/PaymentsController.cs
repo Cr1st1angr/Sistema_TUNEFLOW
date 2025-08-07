@@ -104,10 +104,6 @@ namespace API.TUNEFLOW.Controllers
             connection.Execute(@"DELETE FROM ""Payments"" WERE ""Id"" = @Id", new { Id = id });
            
         }
-        /*
-        private bool PagoExists(int id)
-        {
-            return _context.Pagos.Any(e => e.Id == id);
-        }*/
+
     }
 }

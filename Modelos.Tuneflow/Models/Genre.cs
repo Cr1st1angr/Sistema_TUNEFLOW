@@ -11,6 +11,6 @@ namespace Modelos.Tuneflow.Models
     {
         [Key] public int Id { get; set; }
         public string Name { get; set; }
-        public string FilePath { get; set; } // Ruta del archivo asociado al género, si aplica
+        public string FilePath { get; set; } 
     }
 }

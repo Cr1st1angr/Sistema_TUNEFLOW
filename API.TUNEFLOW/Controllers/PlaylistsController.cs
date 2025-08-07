@@ -139,10 +139,6 @@ namespace API.TUNEFLOW.Controllers
             connection.Execute(@"DELETE FROM ""Playlists"" WHERE ""Id"" = @Id", new { Id = id });
            
         }
-        /*
-        private bool PlaylistExists(int id)
-        {
-            return _context.Playlists.Any(e => e.Id == id);
-        }*/
+
     }
 }

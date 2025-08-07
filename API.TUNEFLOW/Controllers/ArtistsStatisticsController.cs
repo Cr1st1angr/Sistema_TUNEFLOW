@@ -123,10 +123,6 @@ namespace API.TUNEFLOW.Controllers
 
            
         }
-        /*
-        private bool EstadisticasArtistaExists(int id)
-        {
-            return _context.EstadisticasArtistas.Any(e => e.Id == id);
-        }*/
+
     }
 }

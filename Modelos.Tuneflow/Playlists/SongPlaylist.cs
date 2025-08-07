@@ -14,8 +14,8 @@ namespace Modelos.Tuneflow.Playlists
         [Key] public int Id { get; set; }
         [ForeignKey(nameof(Song))] public int SongId { get; set; }
         [ForeignKey(nameof(Playlist))] public int PlaylistId { get; set; }
-        public Song? Song { get; set; } // Relationship with the song that belongs to this playlist
-        public Playlist? Playlist { get; set; } // Relationship with the playlist this song belongs to
+        public Song? Song { get; set; } 
+        public Playlist? Playlist { get; set; } 
     }
 
 }

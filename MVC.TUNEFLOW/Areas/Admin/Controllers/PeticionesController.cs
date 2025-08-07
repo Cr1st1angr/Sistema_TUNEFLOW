@@ -8,7 +8,7 @@ using Modelos.Tuneflow.User.Profiles;
 namespace MVC.TUNEFLOW.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
+    [Authorize(Roles = "admin")]
     public class PeticionesController : Controller
     {
         public async Task<IActionResult> Index()

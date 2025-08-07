@@ -145,10 +145,5 @@ namespace API.TUNEFLOW.Controllers
             connection.Execute(@"DELETE FROM ""Artistas"" WHERE ""Id"" = @Id", new { Id = id });
 
         }
-/*
-        private bool ArtistaExists(int id)
-        {
-            return _context.Artistas.Any(e => e.Id == id);
-        }*/
     }
 }

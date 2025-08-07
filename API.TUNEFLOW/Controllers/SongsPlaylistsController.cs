@@ -62,9 +62,9 @@ namespace API.TUNEFLOW.Controllers
             var existId = connection.ExecuteScalar<int?>(sql, new { IdSong = SongId, IdPlaylist = PlaylistId });
 
             if (existId.HasValue)
-                return Ok(new { id = existId.Value });  // Devuelve el Id encontrado
+                return Ok(new { id = existId.Value });  
             else
-                return NotFound();  // O puedes devolver algo distinto si no existe
+                return NotFound();  
 
 
         }
@@ -99,7 +99,7 @@ namespace API.TUNEFLOW.Controllers
                     return song;
                 },
                 new { IdPlaylist = idPlaylist },
-                splitOn: "Id,Id" // importante para Dapper
+                splitOn: "Id,Id" 
             ).ToList();
 
             if (!songs.Any())
@@ -154,7 +154,7 @@ namespace API.TUNEFLOW.Controllers
             using var connection = new NpgsqlConnection(_config.GetConnectionString("TUNEFLOWContext"));
             connection.Open();
             connection.Execute(@"DELETE FROM ""SongsPlaylists"" WHERE ""Id"" = @Id", new { Id = id });
-            return NoContent(); // Código 204
+            return NoContent(); 
         }
 
     }

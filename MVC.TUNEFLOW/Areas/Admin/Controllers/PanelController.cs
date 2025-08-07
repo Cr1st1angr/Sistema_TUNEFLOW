@@ -34,7 +34,6 @@ namespace MVC.TUNEFLOW.Areas.Admin.Controllers
                 Console.WriteLine($"clientes.Count = {clientes.Count()}");
             }
 
-            // Verificación mejorada como en tu código que funcionaba
             if (clientes == null || !clientes.Any())
             {
                 Console.WriteLine("No hay clientes o lista vacía");
@@ -87,7 +86,7 @@ namespace MVC.TUNEFLOW.Areas.Admin.Controllers
             {
                 Console.WriteLine("No hay artistas o lista vacía");
                 ViewData["TotalArtistas"] = 0;
-                ViewBag.Data = new List<object>(); // Cambiado de Datos a Data
+                ViewBag.Data = new List<object>(); 
                 return View();
             }
 
@@ -119,31 +118,29 @@ namespace MVC.TUNEFLOW.Areas.Admin.Controllers
 
         public async Task<IActionResult> Canciones()
         {
-            Console.WriteLine("📌 Inicio método Canciones");
 
             var canciones = await Crud<Song>.GetAllAsync();
 
             if (canciones == null || !canciones.Any())
             {
-                Console.WriteLine("⚠️ No hay canciones o lista vacía");
+                Console.WriteLine("No hay canciones o lista vacía");
                 ViewData["TotalCanciones"] = 0;
                 ViewBag.Data = new List<object>();
                 return View();
             }
 
-            // Mostrar las fechas exactas para debug
+
             foreach (var s in canciones)
             {
-                Console.WriteLine($"🎵 Song ID {s.Id} - ReleaseDate: {s.ReleaseDate} - Fecha como texto: {s.ReleaseDate.ToString("yyyy-MM-dd")}");
+                Console.WriteLine($"Song ID {s.Id} - ReleaseDate: {s.ReleaseDate} - Fecha como texto: {s.ReleaseDate.ToString("yyyy-MM-dd")}");
             }
 
-            // Usamos ToString para evitar desfases de zona horaria al agrupar
             var cancionesPorFecha = canciones
-                .Where(s => s.ReleaseDate.Year > 2000) // Filtrado por lógica razonable
+                .Where(s => s.ReleaseDate.Year > 2000) 
                 .GroupBy(s => s.ReleaseDate.ToString("yyyy-MM-dd"))
                 .Select(g =>
                 {
-                    Console.WriteLine($"📅 Fecha agrupada: {g.Key}, Total: {g.Count()}");
+                    Console.WriteLine($"Fecha agrupada: {g.Key}, Total: {g.Count()}");
                     return new
                     {
                         Fecha = g.Key,
@@ -153,12 +150,12 @@ namespace MVC.TUNEFLOW.Areas.Admin.Controllers
                 .OrderBy(x => x.Fecha)
                 .ToList();
 
-            Console.WriteLine($"✅ cancionesPorFecha.Count = {cancionesPorFecha.Count}");
+            Console.WriteLine($"cancionesPorFecha.Count = {cancionesPorFecha.Count}");
 
             ViewData["TotalCanciones"] = canciones.Count;
             ViewBag.Data = cancionesPorFecha;
 
-            Console.WriteLine("✅ Fin método Canciones");
+            Console.WriteLine("Fin método Canciones");
             return View();
         }
 
@@ -181,7 +178,7 @@ namespace MVC.TUNEFLOW.Areas.Admin.Controllers
             {
                 Console.WriteLine("No hay albums o lista vacía");
                 ViewData["TotalAlbums"] = 0;
-                ViewBag.Data = new List<object>(); // Cambiado de Datos a Data
+                ViewBag.Data = new List<object>(); 
                 return View();
             }
 
@@ -229,7 +226,7 @@ namespace MVC.TUNEFLOW.Areas.Admin.Controllers
             {
                 Console.WriteLine("No hay pagos o lista vacía");
                 ViewData["TotalPagos"] = 0;
-                ViewBag.Data = new List<object>(); // Cambiado de Datos a Data
+                ViewBag.Data = new List<object>(); 
                 return View();
             }
 

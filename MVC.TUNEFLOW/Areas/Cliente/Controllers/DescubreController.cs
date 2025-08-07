@@ -12,10 +12,9 @@ using Modelos.Tuneflow.Models;
 namespace MVC.TUNEFLOW.Areas.Cliente.Controllers
 {
     [Area("Cliente")]
-    [Authorize]
+    [Authorize(Roles = "cliente")]
     public class DescubreController : Controller
     {
-        // No necesitas _crud como instancia si todo es estático
         private readonly HttpClient _httpClient;
 
         public DescubreController(HttpClient httpClient)

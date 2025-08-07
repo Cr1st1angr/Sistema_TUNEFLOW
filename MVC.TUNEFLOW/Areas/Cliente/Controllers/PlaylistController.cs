@@ -19,7 +19,7 @@ using Dapper;
 namespace MVC.TUNEFLOW.Areas.Cliente.Controllers
 {
     [Area("Cliente")]
-    [Authorize]
+    [Authorize(Roles = "cliente")]
     public class PlaylistController : Controller
     {
         private readonly IConfiguration _config;

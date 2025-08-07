@@ -13,13 +13,13 @@ namespace Modelos.Tuneflow.Playlists
     public class Playlist
     {
         [Key] public int Id { get; set; }
-        public string Title { get; set; } // Playlist title
-        public string Description { get; set; } // Playlist description
-        public DateTime CreationDate { get; set; } // Playlist creation date
+        public string Title { get; set; } 
+        public string Description { get; set; } 
+        public DateTime CreationDate { get; set; } 
         [ForeignKey(nameof(Client))] public int ClientId { get; set; }
         public string PlaylistCover { get; set; }
         public Client? Client { get; set; }
-        public List<Song>? Songs { get; set; } // List of songs that belong to this playlist
+        public List<Song>? Songs { get; set; } 
     }
 
 }

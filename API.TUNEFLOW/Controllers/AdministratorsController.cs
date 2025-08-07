@@ -127,10 +127,6 @@ namespace API.TUNEFLOW.Controllers
             connection.Execute(@"DELETE FROM ""Administrators"" WHERE ""Id"" = @Id", new { Id = id });
         }
 
-        /* private bool AdministradorExists(int id)
-         {
-             return _context.Administradores.Any(e => e.Id == id);
-         }*/
 
         [HttpGet("Usuario/{idUser}")]
         public ActionResult<Administrator> GetAdminByUsuarioId(string idUser)

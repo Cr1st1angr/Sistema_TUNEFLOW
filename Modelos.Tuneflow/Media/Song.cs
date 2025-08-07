@@ -22,7 +22,7 @@ namespace Modelos.Tuneflow.Media
         public bool ExplicitContent { get; set; }
         public string ImagePath { get; set; }
         public DateTime ReleaseDate { get; set; }
-        public bool Available { get; set; } // Indica si la canción está disponible para reproducción o no
+        public bool Available { get; set; } 
         public Artist? Artist { get; set; }
         public Album? Album { get; set; }
 

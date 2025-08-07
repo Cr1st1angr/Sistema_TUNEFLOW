@@ -8,8 +8,8 @@ namespace Modelos.Tuneflow.User.Administration
 {
     public class Administrator : User
     {
-        public string Description { get; set; } // Descripción del administrador, puede incluir su rol o responsabilidades.
-        public string UserId { get; set; } // Identificador único del usuario administrador, puede ser un GUID o un ID de base de datos.
+        public string Description { get; set; } 
+        public string UserId { get; set; } 
     }
 
 }

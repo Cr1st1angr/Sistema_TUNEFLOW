@@ -85,11 +85,7 @@ namespace API.TUNEFLOW.Controllers
             connection.Open();
             connection.Execute(@"DELETE FROM ""Countrys"" WHERE ""Id"" = @Id", new { Id = id });
         }
-        /*
-        private bool PaisExists(int id)
-        {
-            return _context.Paises.Any(e => e.Id == id);
-        }*/
+
 
         // GET: api/Countries/5/songs
         [HttpGet("{paisId}/songs")]

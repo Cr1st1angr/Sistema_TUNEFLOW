@@ -52,8 +52,29 @@ namespace MVC.TUNEFLOW.Areas.Identity.Pages.Account
                 new { area = "Identity", code },
                 Request.Scheme);
 
-            await _emailSender.SendEmailAsync(Input.Email, "Reset Password",
-                $"Por favor restablece tu contraseña <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>aquí</a>.");
+            var htmlMessage = $@"
+            <div style='font-family: Arial, sans-serif; background-color: #fff8e1; padding: 30px; border-radius: 10px; color: #333;'>
+             <h2 style='color: #ff9800;'>🔐 ¿Olvidaste tu contraseña?</h2>
+            <p>Hola 👋,</p>
+
+            <p>No te preocupes, ¡a todos nos pasa! Solo haz clic en el botón de abajo para restablecer tu contraseña y volver a disfrutar de la música.</p>
+
+            <div style='text-align: center; margin: 30px 0;'>
+             <a href='{HtmlEncoder.Default.Encode(callbackUrl)}' style='background-color: #ff9800; color: white; padding: 12px 25px; text-decoration: none; border-radius: 6px; font-weight: bold;'>
+            Restablecer contraseña
+              </a>
+             </div>
+
+            <p>Si no solicitaste este cambio, puedes ignorar este mensaje. Tu cuenta está segura.</p>
+
+            <hr style='border: none; border-top: 1px solid #ddd; margin: 30px 0;'>
+             <p style='font-size: 12px; color: #999;'>
+            Este correo fue enviado automáticamente por TuneFlow. No respondas a este mensaje.
+             </p>
+            </div>";
+
+            await _emailSender.SendEmailAsync(Input.Email, "Restablecer contraseña", htmlMessage);
+
 
             return RedirectToPage("./ForgotPasswordConfirmation");
         }

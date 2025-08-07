@@ -14,7 +14,7 @@ using System.Security.Claims;
 namespace MVC.TUNEFLOW.Areas.Artista.Controllers
 {
     [Area("Artista")]
-    [Authorize]
+    [Authorize(Roles = "artista")]
     public class ArtistaController : Controller
     {
         private readonly IDbConnection _db;
@@ -24,7 +24,7 @@ namespace MVC.TUNEFLOW.Areas.Artista.Controllers
             _db = db;
         }
 
-    
+
 
         public IActionResult Perfil(int id)
         {
@@ -65,10 +65,8 @@ namespace MVC.TUNEFLOW.Areas.Artista.Controllers
 
             ViewBag.Seguido = seguido;
 
-            // Obtener información del artista
             var artista = await Crud<Artist>.GetByIdAsync(id);
 
-            // Obtener canciones del artista
             var canciones = await Crud<Song>.GetCancionesPorArtistaId(id);
             ViewBag.Canciones = canciones;
 
@@ -199,7 +197,7 @@ namespace MVC.TUNEFLOW.Areas.Artista.Controllers
 
                 int artistaId = cancion.ArtistId;
 
-                return Ok(artistaId); // Devuelve solo el ID
+                return Ok(artistaId); 
             }
             catch (Exception ex)
             {

@@ -14,9 +14,9 @@ namespace Modelos.Tuneflow.User.Consumer
         [Key] public int Id { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public string? JoinCode { get; set; } // Código de unión para planes familiares, si es aplicable.
+        public string? JoinCode { get; set; } 
         [ForeignKey(nameof(SubscriptionType))] public int SubscriptionTypeId { get; set; }
-        public int NumberMembers { get; set; } // Número de miembros en la suscripción, especialmente para planes familiares.
+        public int NumberMembers { get; set; } 
         public SubscriptionType? SubscriptionType { get; set; }
 
         public List<Client>? Members { get; set; }

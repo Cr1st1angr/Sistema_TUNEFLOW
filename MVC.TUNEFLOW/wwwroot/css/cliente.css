@@ -103,18 +103,18 @@ body.dark-mode {
     --text-secondary: #d1d5db;
     --text-tertiary: #9ca3af;
     --text-muted: #6b7280;
-    --bg-primary: #020617; /* Fondo principal más oscuro */
-    --bg-secondary: #0f172a; /* Segundo nivel más oscuro */
-    --bg-tertiary: #1e293b; /* Tercer nivel más oscuro */
-    --bg-glass: rgba(15, 23, 42, 0.85); /* Vidrio oscuro */
+    --bg-primary: #020617; 
+    --bg-secondary: #0f172a; 
+    --bg-tertiary: #1e293b; 
+    --bg-glass: rgba(15, 23, 42, 0.85); 
     --bg-glass-hover: rgba(15, 23, 42, 0.95);
-    --bg-overlay: rgba(0, 0, 0, 0.7); /* Overlay más opaco */
-    --sidebar-bg: rgba(15, 23, 42, 0.98); /* Sidebar más oscuro */
+    --bg-overlay: rgba(0, 0, 0, 0.7); 
+    --sidebar-bg: rgba(15, 23, 42, 0.98); 
     --sidebar-text: #f1f5f9;
     --sidebar-hover: rgba(99, 102, 241, 0.1);
     --sidebar-active: rgba(99, 102, 241, 0.15);
     --sidebar-border: rgba(255, 255, 255, 0.05);
-    --player-bg: rgba(15, 23, 42, 0.98); /* Reproductor más oscuro */
+    --player-bg: rgba(15, 23, 42, 0.98); 
     --player-text: #f8fafc;
     --player-shadow: 0 -12px 40px rgba(0, 0, 0, 0.6);
     --player-border: rgba(255, 255, 255, 0.05);
@@ -130,7 +130,7 @@ body.dark-mode {
     --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.6);
     --icon-filter: invert(1) brightness(0.9);
     /* Planes - Modo Oscuro */
-    --bg-card: linear-gradient(to bottom right, #1e293b, #0f172a); /* suave degradado oscuro */
+    --bg-card: linear-gradient(to bottom right, #1e293b, #0f172a);
     --text-color: var(--text-primary);
     --btn-bg: var(--primary-light);
     --btn-text: #0f172a;

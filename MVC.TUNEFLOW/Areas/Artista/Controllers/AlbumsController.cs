@@ -20,7 +20,7 @@ using Npgsql;
 namespace MVC.TUNEFLOW.Areas.Artista.Controllers
 {
     [Area("Artista")]
-    [Authorize]
+    [Authorize(Roles = "artista")]
     public class AlbumsController : Controller
     {
         private readonly IConfiguration _configuration;
@@ -181,7 +181,6 @@ namespace MVC.TUNEFLOW.Areas.Artista.Controllers
             }
             catch (Exception ex)
             {
-                // Log the exception (ex) if necessary
                 ModelState.AddModelError("", "Unable to delete album. Please try again.");
 
                 return View();
@@ -266,7 +265,7 @@ namespace MVC.TUNEFLOW.Areas.Artista.Controllers
                         Title = tituloCancion,
                         FilePath = urlCancion,
                         ArtistId = artistaId,
-                        AlbumId = albumCreado.Id, // Asignar el ID del álbum recién creado
+                        AlbumId = albumCreado.Id, 
                         Duration = duracion,
                         Genre = generoAlbum,
                         ImagePath = urlImagenAlbum,
@@ -344,12 +343,10 @@ namespace MVC.TUNEFLOW.Areas.Artista.Controllers
         {
             try
             {
-                // Primero, obtenemos el álbum para asegurarnos de que existe
                 var album = await Crud<Album>.GetByIdAsync(id);
                 var canciones = await GetCancionesPorAlbum(album.Id);
 
                 int varNumeroCanciones = 0;
-                // Eliminar las canciones asociadas al álbum
                 foreach (var cancion in canciones)
                 {
                     await Crud<Song>.DeleteAsync(cancion.Id);
@@ -369,9 +366,6 @@ namespace MVC.TUNEFLOW.Areas.Artista.Controllers
                 return View("Error");
             }
         }
-
-
-
 
     }
 }

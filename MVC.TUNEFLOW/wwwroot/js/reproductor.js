@@ -265,7 +265,6 @@ function ocultarBotonesAvance() {
     document.getElementById('btn-atras').style.display = 'none';
     document.getElementById('btn-siguiente').style.display = 'none';
     document.getElementById('btn-descargar').style.setProperty('display', 'none', 'important');
-    document.getElementById('btn-letras').style.setProperty('display', 'none', 'important');
     document.getElementById('btn-playlists').style.setProperty('display', 'none', 'important');
     document.getElementById('btnfavorito').style.display = 'none';
     document.getElementById('barraProgreso').style.pointerEvents = 'none';
@@ -276,7 +275,6 @@ function visualizarBotonesAvance() {
     document.getElementById('btn-atras').style.display = 'block';
     document.getElementById('btn-siguiente').style.display = 'block';
     document.getElementById('btn-descargar').style.display = 'block';
-    document.getElementById('btn-letras').style.display = 'block';
     document.getElementById('btn-playlists').style.display = 'block';
     document.getElementById('btnfavorito').style.display = 'block';
     document.getElementById('barraProgreso').style.pointerEvents = 'auto';
@@ -416,8 +414,8 @@ async function obtenerCancionesPlaylist(idPlaylist) {
         const suscripcion = await combprobarSuscripcion();
         if (canciones.length > 0) {
             if (suscripcion) {
+                cola.vaciar(); // Limpiar cola antes de cargar nuevas canciones
                 for (let cancion of canciones) {
-                    cola.vaciar(); // Limpiar cola antes de cargar nuevas canciones
                     const id = cancion.id;
                     const title = cancion.title;
                     const filePath = cancion.filePath;

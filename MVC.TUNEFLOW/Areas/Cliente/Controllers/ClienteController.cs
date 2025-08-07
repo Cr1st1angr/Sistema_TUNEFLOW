@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authentication;
 namespace MVC.TUNEFLOW.Areas.Cliente.Controllers
 {
     [Area("Cliente")]
-    [Authorize]
+    [Authorize(Roles = "cliente")]
     public class ClienteController : Controller
     {
         // Mostrar detalles del cliente autenticado
@@ -53,19 +53,15 @@ namespace MVC.TUNEFLOW.Areas.Cliente.Controllers
 
             try
             {
-                // Actualizar solo los campos permitidos
                 clienteDb.FirstName = cliente.FirstName;
                 clienteDb.LastName = cliente.LastName;
                 clienteDb.Phone = cliente.Phone;
                 clienteDb.BirthDate = cliente.BirthDate;
 
-                // Aquí debes confirmar que UpdateAsync haga el guardado real
                 await Crud<Modelos.Tuneflow.User.Consumer.Client>.UpdateAsync(clienteDb.Id, clienteDb);
 
-                // Confirmación de guardado (puedes poner un log aquí o un mensaje temporal)
                 TempData["SuccessMessage"] = "Datos actualizados correctamente";
 
-                // Redirige a Details que muestra datos del usuario actual
                 return RedirectToAction(nameof(Details));
             }
             catch (Exception ex)

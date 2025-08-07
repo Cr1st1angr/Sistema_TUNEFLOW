@@ -11,9 +11,9 @@ namespace Modelos.Tuneflow.Models
     {
         [Key]public int Id { get; set; }
         public string Title { get; set; }
-        public int Duration { get; set; } // Duración del anuncio en segundos
-        public string FilePath { get; set; } // Ruta del archivo de audio del anuncio
-        public string ImagePath { get; set; } // Ruta de la imagen del anuncio
+        public int Duration { get; set; } 
+        public string FilePath { get; set; } 
+        public string ImagePath { get; set; } 
 
         public string TimeInMinutes(int time)
         {

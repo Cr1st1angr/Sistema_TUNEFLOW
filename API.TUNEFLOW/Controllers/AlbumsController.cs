@@ -164,7 +164,7 @@ namespace API.TUNEFLOW.Controllers
                     return song;
                 },
                 new { AlbumId = albumId },
-                splitOn: "Id,Id" // muy importante
+                splitOn: "Id,Id" 
             ).ToList();
 
             if (!canciones.Any())

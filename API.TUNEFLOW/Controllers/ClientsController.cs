@@ -16,13 +16,7 @@ namespace API.TUNEFLOW.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class ClientsController : ControllerBase
-    {/*
-        private readonly TUNEFLOWContext _context;
-
-        public ClientesController(TUNEFLOWContext context)
-        {
-            _context = context;
-        }*/
+    {
         private readonly IConfiguration _config;
         public ClientsController(IConfiguration config)
         {
@@ -136,10 +130,6 @@ namespace API.TUNEFLOW.Controllers
             connection.Open();
             connection.Execute(@"DELETE FROM ""Clients"" WHERE ""Id"" = @Id", new { Id = id });
         }
-/*
-        private bool ClienteExists(int id)
-        {
-            return _context.Clientes.Any(e => e.Id == id);
-        }*/
+
     }
 }

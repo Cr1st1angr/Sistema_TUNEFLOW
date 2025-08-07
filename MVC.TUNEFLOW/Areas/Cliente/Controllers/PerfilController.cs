@@ -14,23 +14,21 @@ using System.Text.RegularExpressions;
 namespace MVC.TUNEFLOW.Areas.Client.Controllers
 {
     [Area("Cliente")]
-    [Authorize]
+    [Authorize(Roles = "cliente")]
     public class PerfilController : Controller
     {
         // GET: PerfilController
         public async Task<IActionResult> Index()
         {
-            // Obtener el ID del usuario autenticado
+
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             Console.WriteLine($"UserId: {userId}");
 
-            // Si no está autenticado, redirige a Login
             if (string.IsNullOrEmpty(userId))
             {
                 return RedirectToAction("Login", "Account");
             }
 
-            // Obtener cliente asociado al usuario
             var cliente = await Crud<Modelos.Tuneflow.User.Consumer.Client>.GetClientePorUsuarioId(userId);
             ViewBag.IdCliente = cliente.Id;
             if (cliente == null)
@@ -39,17 +37,16 @@ namespace MVC.TUNEFLOW.Areas.Client.Controllers
                 return RedirectToAction("Index", "Buscar");
             }
 
-            // Obtener perfil asociado al cliente
+
             var perfil = await Crud<Profile>.GetPerfilPorClienteId(cliente.Id);
             if (perfil == null)
             {
                 Console.WriteLine($"❌ No se encontró perfil para clienteId: {cliente.Id}");
-                return RedirectToAction("Create", "Perfil"); // Puedes cambiar a donde deseas redirigir
+                return RedirectToAction("Create", "Perfil"); 
             }
 
             Console.WriteLine($"✅ Perfil encontrado para clienteId: {cliente.Id}");
 
-            // Mostrar vista con el perfil
             return View(perfil);
         }
 
@@ -98,10 +95,9 @@ namespace MVC.TUNEFLOW.Areas.Client.Controllers
             {
                 string supabaseUrl = "https://kblhmjrklznspeijwzeg.supabase.co";
                 string supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtibGhtanJrbHpuc3BlaWp3emVnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA4MDk2MDcsImV4cCI6MjA2NjM4NTYwN30.CpoCYjAUi4ijZzAEqi9R_3HeGq5xpWANMMIlAQjJx-o"; // La API key de anon pública
-                string bucket = "imagenesusuarios"; // Nombre del bucket en Supabase
-                string carpeta = "Usuarios";   // Carpeta donde quieres guardar la imagen
+                string bucket = "imagenesusuarios"; 
+                string carpeta = "Usuarios";   
 
-                // Obtener el perfil desde tu API o base de datos
                 var perfil = await Crud<Profile>.GetByIdAsync(id);
 
                 if (perfil == null)
@@ -131,7 +127,6 @@ namespace MVC.TUNEFLOW.Areas.Client.Controllers
                             var contenido = new ByteArrayContent(memori.ToArray());
                             contenido.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(ImagenPerfil.ContentType);
 
-                            // Llamada PUT para subir archivo a Supabase Storage
                             var response = await client.PutAsync($"/storage/v1/object/{bucket}/{rutaArchivo}", contenido);
 
                             if (!response.IsSuccessStatusCode)
@@ -169,7 +164,6 @@ namespace MVC.TUNEFLOW.Areas.Client.Controllers
                         }
                     }
 
-                    // Construir URL pública de la imagen
                     perfil.ProfileImage = $"{supabaseUrl}/storage/v1/object/public/{bucket}/{rutaArchivo}";
                 }
 

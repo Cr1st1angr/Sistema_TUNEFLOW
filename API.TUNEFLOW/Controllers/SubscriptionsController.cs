@@ -61,7 +61,7 @@ namespace API.TUNEFLOW.Controllers
             var suscripcion = connection.QuerySingleOrDefault<Subscription>(sql, new { JoinCode = codigo });
             if (suscripcion == null)
             {
-                return NotFound(); // No se encontró la suscripción con ese código
+                return NotFound(); 
             }
             return suscripcion;
         }
@@ -91,9 +91,9 @@ namespace API.TUNEFLOW.Controllers
             );
 
             if (affectedRows == 0)
-                return NotFound(); // No se encontró la suscripción con ese ID
+                return NotFound(); 
 
-            return NoContent(); // Actualización exitosa, sin contenido que devolver
+            return NoContent();
 
         }
 
@@ -127,10 +127,5 @@ namespace API.TUNEFLOW.Controllers
             connection.Open();
             connection.Execute(@"DELETE FROM ""Subscriptions"" WHERE ""Id"" = @Id", new { Id = id });
         }
-/*
-        private bool SuscripcionExists(int id)
-        {
-            return _context.Suscripciones.Any(e => e.Id == id);
-        }*/
     }
 }

@@ -193,7 +193,7 @@ textarea.form-control {
     padding: 0.75rem 1rem;
     font-size: 1rem;
     transition: all var(--transition);
-    caret-color: var(--text-color); /* Cursor visible */
+    caret-color: var(--text-color); 
 }
 
     input.form-control::placeholder,
@@ -210,7 +210,7 @@ textarea.form-control {
         box-shadow: 0 0 0 0.25rem var(--input-focus);
         outline: none;
         background-color: var(--input-bg);
-        color: var(--text-color); /* Asegura el texto visible */
+        color: var(--text-color); 
     }
 
     /* Disabled */
@@ -489,7 +489,6 @@ label,
             color: white;
         }
 
-/* Responsive text size */
 @media (max-width: 480px) {
     .panel-btn {
         font-size: 1rem;

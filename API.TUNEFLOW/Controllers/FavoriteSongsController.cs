@@ -119,9 +119,5 @@ namespace API.TUNEFLOW.Controllers
             return NoContent(); // Código 204
         }
 
-       /* private bool CancionFavoritaExists(int id)
-        {
-            return _context.CancionesFavoritas.Any(e => e.Id == id);
-        }*/
     }
 }

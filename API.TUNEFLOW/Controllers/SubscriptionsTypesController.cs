@@ -95,10 +95,5 @@ namespace API.TUNEFLOW.Controllers
             connection.Execute(@"DELETE FROM ""SubscriptionsTypes"" WHERE ""Id"" = @Id", new { Id = id });
          
         }
-        /*
-        private bool TipoSuscripcionExists(int id)
-        {
-            return _context.TiposSuscripciones.Any(e => e.Id == id);
-        }*/
     }
 }

@@ -10,6 +10,7 @@ using System.Security.Claims;
 namespace MVC.TUNEFLOW.Areas.Cliente.Controllers
 {
     [Area("Cliente")]
+    [Authorize(Roles = "cliente")]
     public class PagoController : Controller
     {
         
@@ -50,7 +51,7 @@ namespace MVC.TUNEFLOW.Areas.Cliente.Controllers
                 return RedirectToAction("Planes", "Planes", new { area = "Cliente" });
             }
             ViewBag.Precio = TypePago.Price;
-            ViewBag.ClienteId = client.Id; // Asignar el ID del cliente a la vista
+            ViewBag.ClienteId = client.Id; 
             TempData["Tipo"] = TypePago.Name;
             return View();
         }
@@ -77,15 +78,15 @@ namespace MVC.TUNEFLOW.Areas.Cliente.Controllers
                     var tipo = TempData.Peek("Tipo")?.ToString()?.Trim();
                     Console.WriteLine($"tipo ==== {tipo}");
                     if (tipo == "Plan Premium"){
-                        subscription.SubscriptionTypeId = 2; // Asignar el ID del tipo de suscripción Premium
-                        subscription.NumberMembers = 0; // Asignar el número de miembros para el plan Premium
-                        subscription.JoinCode = null; // No se requiere código de unión para el plan Premium
+                        subscription.SubscriptionTypeId = 2; 
+                        subscription.NumberMembers = 0; 
+                        subscription.JoinCode = null; 
                     }
                     else if(tipo == "Plan Familiar") {
                         var codigo = GenerarCodigoAleatorio();
-                        subscription.SubscriptionTypeId = 3; // Asignar el ID del tipo de suscripción Familiar
-                        subscription.NumberMembers = 3; // Asignar el número de miembros para el plan Familiar
-                        subscription.JoinCode = codigo; // Asignar el código de unión para el plan Familiar
+                        subscription.SubscriptionTypeId = 3;
+                        subscription.NumberMembers = 3; 
+                        subscription.JoinCode = codigo; 
                     }
                     
                     Console.WriteLine($"FechaIncio: {subscription.StartDate}");
@@ -109,7 +110,7 @@ namespace MVC.TUNEFLOW.Areas.Cliente.Controllers
 
                 ModelState.AddModelError("", "Hubo un error al procesar el pago.");
                 Console.WriteLine($"ERRORASO: {EX.Message}");
-                return View("Create", pago); // o "Crear" si la vista se llama así
+                return View("Create", pago); 
             }
         }
 

@@ -16,10 +16,10 @@ namespace Modelos.Tuneflow.User.Production
         public string StageName { get; set; }
         public string MusicGenre { get; set; }
         [ForeignKey(nameof(Country))] public int CountryId { get; set; }
-        public bool Verified { get; set; } // Indica si el artista ha sido verificado por la plataforma.
-        public string UserId { get; set; } // Identificador único del usuario artista, puede ser un GUID o un ID de base de datos.
+        public bool Verified { get; set; } 
+        public string UserId { get; set; } 
         public Country? Country { get; set; }
-        public Profile? Profile { get; set; } // Relación con el perfil del artista
+        public Profile? Profile { get; set; } 
         public List<Song>? Songs { get; set; }
         public List<Album>? Albums { get; set; }
     }

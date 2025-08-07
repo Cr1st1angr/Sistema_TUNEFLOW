@@ -10,7 +10,7 @@ namespace Modelos.Tuneflow.User.Consumer
     public class SubscriptionType
     {
         [Key] public int Id { get; set; }
-        public string Name { get; set; }  // Free, Premium, Familiar
+        public string Name { get; set; } 
         public double Price { get; set; }
         public int MemberLimit { get; set; }
     }
