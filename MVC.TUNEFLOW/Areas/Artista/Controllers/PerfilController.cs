@@ -78,7 +78,7 @@ namespace MVC.TUNEFLOW.Areas.Artista.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "artista")]
+        [Authorize(Roles = "artista, cliente")]
         [Route("Artista/Perfil/ObtenerCancionesPorArtista")]
         public async Task<ActionResult> ObtenerCancionesPorArtista(int id)
         {

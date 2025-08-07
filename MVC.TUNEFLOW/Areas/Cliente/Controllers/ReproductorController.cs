@@ -15,7 +15,6 @@ using Modelos.Tuneflow.User.Administration;
 namespace MVC.TUNEFLOW.Areas.Cliente.Controllers
 {
     [Area("Cliente")]
-    [Authorize(Roles = "cliente")]
     public class ReproductorController : Controller
     {
         private readonly HttpClient _httpClient;
