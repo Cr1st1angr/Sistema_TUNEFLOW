@@ -40,10 +40,9 @@ namespace API.TUNEFLOW
             {
                 options.AddPolicy("PermitirMVC", policy =>
                 {
-                    policy.WithOrigins("https://localhost:7015") 
+                    policy.AllowAnyOrigin()
                           .AllowAnyHeader()
-                          .AllowAnyMethod()
-                          .AllowCredentials();
+                          .AllowAnyMethod();
                 });
             });
 
@@ -55,6 +54,7 @@ namespace API.TUNEFLOW
 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.WebHost.UseUrls("http://0.0.0.0:8080");
 
             var app = builder.Build();
 
@@ -66,7 +66,7 @@ namespace API.TUNEFLOW
 
             app.UseCors("PermitirMVC");
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
