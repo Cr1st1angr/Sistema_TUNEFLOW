@@ -18,13 +18,13 @@ COPY ./API.TUNEFLOW ./API.TUNEFLOW
 COPY ./API.Consumer ./API.Consumer
 
 # Publicar la aplicación principal
-RUN dotnet publish ./MVC.TUNEFLOW/MVC.TUNEFLOW.csproj -c Release -o /app/publish
+RUN dotnet publish ./MVC.TUNEFLOW/MVC.TUNEFLOW.csproj -c Release -o /app/mvc
 
 # Etapa final de runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
 
-COPY --from=build /app/publish .
+COPY --from=build /app/mvc .
 
 EXPOSE 80
 
