@@ -10,14 +10,14 @@ COPY ./Modelos.Tuneflow/Modelos.Tuneflow.csproj ./Modelos.Tuneflow/
 # Restaurar dependencias
 RUN dotnet restore ./MVC.TUNEFLOW/MVC.TUNEFLOW.csproj
 
-# Copiar código fuente excluyendo archivos de configuración conflictivos
+# Copiar solo los archivos necesarios para MVC (excluyendo appsettings.json de API)
 COPY ./MVC.TUNEFLOW ./MVC.TUNEFLOW
-COPY ./API.TUNEFLOW ./API.TUNEFLOW
-COPY ./API.Consumer ./API.Consumer
+COPY ./API.TUNEFLOW/*.cs ./API.TUNEFLOW/
+COPY ./API.Consumer/*.cs ./API.Consumer/
 COPY ./Modelos.Tuneflow ./Modelos.Tuneflow
 
-# Publicar MVC excluyendo archivos de configuración de otros proyectos
-RUN dotnet publish ./MVC.TUNEFLOW/MVC.TUNEFLOW.csproj -c Release -o /app/mvc /p:DefaultItemExcludes="API.TUNEFLOW/appsettings.*;API.TUNEFLOW/appsettings.*.json"
+# Publicar MVC
+RUN dotnet publish ./MVC.TUNEFLOW/MVC.TUNEFLOW.csproj -c Release -o /app/mvc
 
 # Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
