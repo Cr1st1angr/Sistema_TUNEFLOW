@@ -5,19 +5,15 @@ WORKDIR /src
 # Copiar solo los archivos .csproj para aprovechar cache
 COPY ./MVC.TUNEFLOW/MVC.TUNEFLOW.csproj ./MVC.TUNEFLOW/
 COPY ./Modelos.Tuneflow/Modelos.Tuneflow.csproj ./Modelos.Tuneflow/
-COPY ./API.TUNEFLOW/API.TUNEFLOW.csproj ./API.TUNEFLOW/
-COPY ./API.Consumer/API.Consumer.csproj ./API.Consumer/
 
 # Restaurar dependencias
 RUN dotnet restore ./MVC.TUNEFLOW/MVC.TUNEFLOW.csproj
 
-# Copiar el código fuente completo de cada proyecto
+# Copiar solo el código necesario para el MVC
 COPY ./MVC.TUNEFLOW ./MVC.TUNEFLOW
 COPY ./Modelos.Tuneflow ./Modelos.Tuneflow
-COPY ./API.TUNEFLOW ./API.TUNEFLOW
-COPY ./API.Consumer ./API.Consumer
 
-# Publicar la aplicación principal
+# Publicar la aplicación MVC
 RUN dotnet publish ./MVC.TUNEFLOW/MVC.TUNEFLOW.csproj -c Release -o /app/mvc
 
 # Etapa final de runtime
