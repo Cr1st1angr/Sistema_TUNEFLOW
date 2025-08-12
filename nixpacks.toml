@@ -1,0 +1,11 @@
+[phases.setup]
+packages = ["dotnet-sdk-8.0"]
+
+[phases.install]
+commands = ["dotnet restore"]
+
+[phases.build]
+commands = ["dotnet publish -c Release -o out && ls -l out"]
+
+[phases.start]
+commands = ["dotnet out/API.TUNEFLOW.dll"]
