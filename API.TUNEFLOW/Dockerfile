@@ -1,29 +1,30 @@
-# Build stage
+# Etapa de compilación
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Copiar el archivo de solución y los archivos de proyecto (subiendo un nivel desde Dockerfile)
+# Copiar archivos de proyecto para restaurar dependencias (mejor uso de caché)
 COPY ../API.TUNEFLOW/API.TUNEFLOW.csproj ./API.TUNEFLOW/
 COPY ../Modelos.Tuneflow/Modelos.Tuneflow.csproj ./Modelos.Tuneflow/
 
 # Restaurar dependencias
 RUN dotnet restore ./API.TUNEFLOW/API.TUNEFLOW.csproj
 
-# Copiar todo el repositorio (subiendo un nivel desde Dockerfile)
-COPY ../ ./
+# Copiar solo los proyectos necesarios para la API
+COPY ../API.TUNEFLOW ./API.TUNEFLOW
+COPY ../Modelos.Tuneflow ./Modelos.Tuneflow
 
-# Publicar el proyecto principal
-RUN dotnet publish ./API.TUNEFLOW/API.TUNEFLOW.csproj -c Release -o /app/publish
+# Publicar la API
+RUN dotnet publish ./API.TUNEFLOW/API.TUNEFLOW.csproj -c Release -o /app/api
 
-# Runtime stage
+# Etapa de runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
 
-# Copiar el resultado publicado
-COPY --from=build /app/publish .
+# Copiar publicación desde la etapa de build
+COPY --from=build /app/api .
 
 # Exponer puerto
 EXPOSE 80
 
-# Ejecutar el servicio
+# Ejecutar la API
 ENTRYPOINT ["dotnet", "API.TUNEFLOW.dll"]
