@@ -76,17 +76,7 @@ namespace MVC.TUNEFLOW
                 throw new InvalidOperationException("La cadena de conexi n 'DefaultConnection' para TUNEFLOWContext no se encontr .");
             }
 
-            builder.Services.AddDbContext<TUNEFLOWContext>(options =>
-            {
-                options.UseNpgsql(tuneflowConnectionString, npgsqlOptions =>
-                {
-                    npgsqlOptions.EnableRetryOnFailure(
-                        maxRetryCount: 5,
-                        maxRetryDelay: TimeSpan.FromSeconds(30),
-                        errorCodesToAdd: null
-                    );
-                });
-            });
+            
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
