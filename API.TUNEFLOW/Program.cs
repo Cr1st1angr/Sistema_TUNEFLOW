@@ -14,26 +14,7 @@ namespace API.TUNEFLOW
             var connectionString = builder.Configuration.GetConnectionString("TUNEFLOWContext");
 
            
-            builder.Services.AddDbContext<TUNEFLOWContext>(options =>
-            {
-              
-                if (string.IsNullOrEmpty(connectionString))
-                {
-                    throw new InvalidOperationException("La cadena de conexión 'TUNEFLOWContext' no se encontró.");
-                }
-
-                
-                options.UseNpgsql(connectionString, npgsqlOptions =>
-                {
-                   
-                    npgsqlOptions.EnableRetryOnFailure(
-                        maxRetryCount: 5, 
-                        maxRetryDelay: TimeSpan.FromSeconds(30), 
-                        errorCodesToAdd: null 
-                    );
-
-                });
-            });
+           
 
 
             builder.Services.AddCors(options =>
